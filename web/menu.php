@@ -46,11 +46,11 @@ table, th, td {
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index.html">&nbsp;Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index.php">&nbsp;Home</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="menu" style="color:#ffffff;" href="menu.php">Menu</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="order.php">Just Order</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="justOrder" style="color:#ffffff;" href="register.html">Register</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="login.html">Log In</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="justOrder" style="color:#ffffff;" href="register.php">Register</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="login.php">Log In</a></li>
                     </ul>
             </div>
     </div>

@@ -17,11 +17,11 @@
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index.html">&nbsp;Home</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="menu" style="color:#ffffff;" href="menu.html">Menu</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="order.html">Just Order</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="register.html">Register</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="index.html">Log out</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index.php">&nbsp;Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="menu" style="color:#ffffff;" href="menu.php">Menu</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="order.php">Just Order</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="register.php">Register</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="index.php">Log out</a></li>
                     </ul>
             </div>
     </div>

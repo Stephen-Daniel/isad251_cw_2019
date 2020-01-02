@@ -13,15 +13,15 @@
 <body style="filter: blur(0px);">
     <div style="background-image: url(&quot;assets/image/coffeeAndToast.jpg&quot;);background-position: center;width: 100%;height: 100vh;background-size: cover;opacity: 1;filter: blur(0px);background-repeat: no-repeat;">
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;background-color: #bacfe1;color: #3a2121;opacity: 1;filter: blur(0px) hue-rotate(0deg);">
-            <div class="container-fluid"><a class="navbar-brand" href="#" style="color: rgb(11,73,88);">Cafe Drinks &amp; Snacks</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container-fluid"><a class="navbar-brand"  href="login.php" style="color: rgb(11,73,88);">Cafe Drinks &amp; Snacks</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index.html">&nbsp;Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index.php">&nbsp;Home</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="menu" style="color:#ffffff;" href="../web/menu.php">Menu</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="order.php">Just Order</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="register.html">Register</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="login.html">Log In</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="register.php">Register</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="login.php">Log In</a></li>
                     </ul>
             </div>
     </div>
