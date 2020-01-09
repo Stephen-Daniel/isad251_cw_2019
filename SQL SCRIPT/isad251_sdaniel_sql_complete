@@ -1,0 +1,124 @@
+IF OBJECT_ID(N'orders', N'U') IS NOT NULL 
+BEGIN
+	DROP TABLE orders; 
+END
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `order_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_name` varchar(255) NOT NULL,
+  `order_email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `name` (`order_name`),
+  ADD KEY `email` (`order_email`),
+  ADD KEY `order_date` (`order_date`);
+
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+
+
+
+
+
+IF OBJECT_ID(N`orders_items`, N'U') IS NOT NULL 
+BEGIN
+	DROP TABLE `orders_items`; 
+END
+
+CREATE TABLE `orders_items` (
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `orders_items`
+  ADD PRIMARY KEY (`order_id`,`product_id`);
+
+
+
+
+IF OBJECT_ID(N`products`, N'U') IS NOT NULL 
+BEGIN
+	DROP TABLE `products`; 
+END
+
+CREATE TABLE `products` (
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_image` varchar(255) DEFAULT NULL,
+  `product_description` text,
+  `product_price` decimal(10,2) NOT NULL DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `name` (`product_name`);
+
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+
+
+INSERT INTO `products` (`product_id`, `product_name`, `product_image`, `product_description`, `product_price`) VALUES
+(1, 'TEA', '/image/drinkTea.jpg', 'Fresh hot brewed Tea from Tesco', 1.20),
+(2, 'CHOCOLATE', '/image/drinkChocolate.jpg', 'Melted milk choclate with cream', 1.90),
+(3, 'COFFEE', '/image/drinkCoffee.jpg', 'Espresso from Starcosta', 1.90),
+(4, 'COKE', '/image/drinkCoke.jpg', 'Cold, fizzy and in a bottle', 1.90),
+(5, 'FANTA', '/image/drinkFanta.jpg', 'Fizzy orange with a straw', 1.90),
+(6, 'SPRITE', '/image/drinkSprite.jpg', 'Lemon goodness in a cold bottle', 1.90),
+(7, 'TOAST', '/image/toast.jpg', 'Fresh cut toasted bread with butter', 2.00),
+(8, 'CHEESE ON TOAST', '/image/toastCheese.jpg', 'Melted chedder cheese on toast', 3.50),
+(9, 'TOASTED HAM & CHEESE', '/image/toastCheese&Ham.jpg', 'Best toasted sandwich EVER!', 4.50),
+(10, 'SALAD SANDWICH', '/image/sandwichSalad.jpg', 'Rabbit food between two slices', 5.10),
+(11, 'BEEF SANDWICH', '/image/sandwichBeef.jpg', 'Rabbit between two slices', 4.80),
+(12, 'CLUB SANDWICH', '/image/sandwichClub.jpg', 'The very best sandwich', 5.50);
+
+
+IF OBJECT_ID(N'customers', N'U') IS NOT NULL 
+BEGIN
+	DROP TABLE 'customers'; 
+END
+
+CREATE TABLE 'customers' 
+( 
+     customer_Id INT IDENTITY(0001,1) NOT NULL,
+     customer_firstname varchar(255) NOT NULL,
+     customer_lastname varchar(255) NOT NULL,
+     customer_addresslineone varchar(255) NOT NULL,
+     customer_addresslinetwo varchar(255),
+     customer_city varchar(255) NOT NULL,
+     customer_postcode varchar(25) NOT NULL,
+     customer_email varchar(255) NOT NULL,
+     customer_username varchar(255) NOT NULL,
+     customer_password varchar(255) NOT NULL,
+CONSTRAINT pk_customer_Id PRIMARY KEY (customer_Id) 
+); 
+
+INSERT INTO customers(1,customer_firstname, customer_lastname, customer_addresslineone, customer_addresslinetwo, customer_city, customer_postcode, customer_email, customer_username, customer_password) VALUES
+('Walk In Customer', 'Has Not Signed Up', 'Local WalkIn', NULL, 'Plymouth', 'PL1 1LP', 'drinks&snacks.walkin@gmail.com', 'Generic', 'Customer');
+
+
+IF OBJECT_ID(N'admin', N'U') IS NOT NULL 
+BEGIN
+	DROP TABLE 'admin'; 
+END
+
+CREATE TABLE 'admin' 
+( 
+     admin_Id INT IDENTITY(0001,1) NOT NULL,
+     admin_firstname NVARCHAR(40) NOT NULL,
+     admin_lastname NVARCHAR(40) NOT NULL,
+     admin_email NVARCHAR(80) NOT NULL,
+     admin_username NVARCHAR(20) NOT NULL,
+     admin_password NVARCHAR(20) NOT NULL,
+CONSTRAINT pk_AdminId PRIMARY KEY (AdminId) 
+); 
+
+INSERT INTO dbo.Admin(1, admin_firstname, admin_lastname, admin_email, admin_username, admin_password)
+VALUES (1, 'Stephen', 'Daniel', 'stephen.daniel@plymouth.ac.uk', 'admin', 'password')
+
+

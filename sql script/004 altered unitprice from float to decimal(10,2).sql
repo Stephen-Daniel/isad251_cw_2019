@@ -1,4 +1,0 @@
-ALTER TABLE food
-MODIFY COLUMN UnitPrice DECIMAL(10,2);
-
-

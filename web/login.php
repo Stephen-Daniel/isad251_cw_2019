@@ -1,62 +1,149 @@
-<!DOCTYPE html>
-<html>
+<?php
+namespace PHPMaker2020\project1;
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>cafe.html</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.min.css">
-</head>
+// Session
+if (session_status() !== PHP_SESSION_ACTIVE)
+	session_start(); // Init session data
 
-<body style="filter: blur(0px);">
-    <div style="background-image: url(&quot;assets/image/coffeeAndToast.jpg&quot;);background-position: center;width: 100%;height: 100vh;background-size: cover;opacity: 1;filter: blur(0px);background-repeat: no-repeat;">
-        <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" style="height: 80px;background-color: #bacfe1;color: #3a2121;opacity: 1;filter: blur(0px) hue-rotate(0deg);">
-            <div class="container-fluid"><a class="navbar-brand" href="#" style="color: rgb(11,73,88);">Cafe Drinks &amp; Snacks</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div
-                    class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index.php">&nbsp;Home</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="menu" style="color:#ffffff;" href="menu.php">Menu</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="order.php">Just Order</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="register.php">Register</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="index.php">Log out</a></li>
-                    </ul>
-            </div>
-    </div>
-    </nav>
-    <div class="container-fluid main-panel">
-        <div class="row">
-            <div class="col d-flex justify-content-center align-items-center">
-                <div class="login-user-avatar"></div>
-                <div class="login-panel">
-                    <div class="login-form">
-                        <form>
-                            <div class="form-group">
-                                <div class="input-group"><input class="form-control" type="text" id="tableNumber" name="tableNumber" required="" placeholder="Table number"></div>
-                                <div class="input-group"><input class="form-control" type="text" id="login-username" name="username" required="" placeholder="Username"></div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group"><input class="form-control" type="password" name="password" required="" placeholder="Password"></div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group"></div>
-                            </div>
-                            <div class="form-group"><button class="btnLogin" type="Submit">Login</button></div>
-                        </form>
-                    </div>
-                    <div class="login-response has-error"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/script.min.js"></script>
-</body>
+// Output buffering
+ob_start();
 
-</html>
+// Autoload
+include_once "autoload.php";
+?>
+<?php
+
+// Write header
+WriteHeader(FALSE);
+
+// Create page object
+$login = new login();
+
+// Run the page
+$login->run();
+
+// Setup login status
+SetupLoginStatus();
+SetClientVar("login", LoginStatus());
+
+// Global Page Rendering event (in userfn*.php)
+Page_Rendering();
+
+// Page Rendering event
+$login->Page_Render();
+?>
+<?php include_once "header.php"; ?>
+<script>
+loadjs.ready("head", function() {
+
+	// Client script
+	// Write your client script here, no need to add script tags.
+
+});
+</script>
+<script>
+var flogin;
+loadjs.ready("head", function() {
+	var flogin = new ew.Form("flogin");
+
+	// Validate function
+	flogin.validate = function() {
+		var fobj = this._form;
+		if (!this.validateRequired)
+			return true; // Ignore validation
+		if (!ew.hasValue(fobj.username))
+			return this.onError(fobj.username, ew.language.phrase("EnterUid"));
+		if (!ew.hasValue(fobj.password))
+			return this.onError(fobj.password, ew.language.phrase("EnterPwd"));
+
+		// Call Form_CustomValidate event
+		if (!this.Form_CustomValidate(fobj))
+			return false;
+		return true;
+	}
+
+	// Form_CustomValidate
+	flogin.Form_CustomValidate = function(fobj) { // DO NOT CHANGE THIS LINE!
+
+		// Your custom validation code here, return false if invalid.
+		return true;
+	}
+
+	// Use JavaScript validation
+	flogin.validateRequired = <?php echo json_encode(Config("CLIENT_VALIDATE")) ?>;
+	loadjs.done("flogin");
+});
+</script>
+<?php $login->showPageHeader(); ?>
+<?php
+$login->showMessage();
+?>
+<form name="flogin" id="flogin" class="ew-form ew-login-form" action="<?php echo CurrentPageName() ?>" method="post">
+<?php if ($Page->CheckToken) { ?>
+<input type="hidden" name="<?php echo Config("TOKEN_NAME") ?>" value="<?php echo $Page->Token ?>">
+<?php } ?>
+<input type="hidden" name="modal" value="<?php echo (int)$login->IsModal ?>">
+<div class="ew-login-box">
+<div class="login-logo"></div>
+<div class="card">
+	<div class="card-body">
+	<p class="login-box-msg"><?php echo $Language->phrase("LoginMsg") ?></p>
+	<div class="form-group row">
+		<input type="text" name="username" id="username" autocomplete="username" class="form-control ew-control" value="<?php echo HtmlEncode($login->Username) ?>" placeholder="<?php echo HtmlEncode($Language->phrase("Username")) ?>">
+	</div>
+	<div class="form-group row">
+		<div class="input-group flex-nowrap"><input type="password" name="password" id="password" autocomplete="current-password" class="form-control ew-control" placeholder="<?php echo HtmlEncode($Language->phrase("Password")) ?>"><div class="input-group-append"><button type="button" class="btn btn-default ew-toggle-password" onclick="ew.togglePassword(event);"><i class="fas fa-eye"></i></button></div></div>
+	</div>
+<?php if (!$login->IsModal) { ?>
+	<button class="btn btn-primary ew-btn" name="btn-submit" id="btn-submit" type="submit"><?php echo $Language->phrase("Login") ?></button>
+<?php } ?>
+<?php
+
+	// OAuth login
+	$providers = Config("AUTH_CONFIG.providers");
+	$cntProviders = 0;
+	foreach ($providers as $id => $provider) {
+		if ($provider["enabled"])
+			$cntProviders++;
+	}
+	if ($cntProviders > 0) {
+?>
+	<div class="social-auth-links text-center mt-3">
+		<p><?php echo $Language->phrase("LoginOr") ?></p>
+<?php
+		foreach ($providers as $id => $provider) {
+			if ($provider["enabled"]) {
+?>
+			<a href="login.php?provider=<?php echo $id ?>" class="btn btn-block btn-<?php echo strtolower($provider["color"]) ?>"><i class="fab fa-<?php echo strtolower($id) ?> mr-2"></i><?php echo $Language->phrase("Login" . $id) ?></a>
+<?php
+			}
+		}
+?>
+	</div>
+<?php
+	}
+?>
+<div class="social-auth-links text-center mt-3">
+</div>
+</div>
+</div>
+</div>
+</form>
+<?php
+$login->showPageFooter();
+if (Config("DEBUG"))
+	echo GetDebugMessage();
+?>
+<script>
+loadjs.ready("load", function() {
+
+	// Startup script
+	// Write your startup script here
+	// console.log("page loaded");
+
+});
+</script>
+<?php include_once "footer.php"; ?>
+<?php
+$login->terminate();
+?>

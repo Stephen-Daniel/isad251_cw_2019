@@ -4,7 +4,7 @@ $hostname = 'proj-mysql.uopnet.plymouth.ac.uk';
 $username = 'ISAD251_SDaniel';
 $password = 'ISAD251_22201615';
 $databasename = 'isad251_sdaniel';
-$query = "SELECT * FROM food";
+$query = "SELECT * FROM products";
 $connection = mysqli_connect($hostname, $username, $password, $databasename);
 $result1 = mysqli_query($connection, $query);
 $result2 = mysqli_query($connection, $query);
@@ -45,11 +45,12 @@ table, th, td {
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index.php">&nbsp;Home</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" id="home" style="color:#ffffff;" href="index 2.php">&nbsp;Home</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="menu" style="color:#ffffff;" href="menu.php">Menu</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link active" id="justOrder" style="color:#ffffff;" href="order.php">Just Order</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="3b-products.php">Just Order</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" id="justOrder" style="color:#ffffff;" href="register.php">Register</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="login.php">Log In</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="index 2.php">Log out</a></li>
+						<li class="nav-item" role="presentation"><a class="nav-link" id="register" style="color:#ffffff;" href="index.php">Admin</a></li>
                     </ul>
             </div>
     </div>
